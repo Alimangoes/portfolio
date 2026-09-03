@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<title>Ali</title>
+
+<link rel="icon" type="image/png" href="images/logo.png">
+
+</head>
+
+<body>
+
+<div class="main-layout">
+
+    <!-- ========================================
+         PROFILE
+    ========================================= -->
+
+    <aside class="profile">
+
+        <div class="logoname">
+            <img
+                src="images/logo.png"
+                class="logo"
+                alt="Ali logo">
+        </div>
+
+        <div class="profilepic">
+            <img
+                src="images/ali.jpg"
+                alt="Ali">
+        </div>
+
+
+        <!-- PROFILE TABS -->
+
+        <div class="t-tabs" role="tablist">
+
+            <span
+                class="t-tabs-pill"
+                aria-hidden="true">
+            </span>
+
+
+            <button
+                class="t-tab"
+                role="tab"
+                aria-selected="true"
+                type="button"
+                data-profile-page="1">
+
+                About
+
+            </button>
+
+
+            <button
+                class="t-tab"
+                role="tab"
+                aria-selected="false"
+                type="button"
+                data-profile-page="2">
+
+                Skills
+
+            </button>
+
+
+            <button
+                class="t-tab"
+                role="tab"
+                aria-selected="false"
+                type="button"
+                data-profile-page="3">
+
+                Contact
+
+            </button>
+
+        </div>
+
+
+        <!-- PROFILE CONTENT -->
+
+        <div class="profile-content">
+
+            <div
+                class="profile-page-slide"
+                data-profile-page="1">
+
+
+                <!-- ABOUT -->
+
+                <div
+                    class="profile-page"
+                    data-profile-page-id="1">
+
+                    <h3>About Me</h3>
+
+                    <p>
+                        I'm Ali, a Shopify Developer focused on
+                        building custom and responsive storefronts.
+                    </p>
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div
+                    class="profile-page"
+                    data-profile-page-id="2">
+
+                    <h3>Skills</h3>
+
+                    <p>
+                        Shopify Liquid, HTML, CSS, JavaScript,
+                        React, and Shopify theme development.
+                    </p>
+
+                </div>
+
+
+                <!-- CONTACT -->
+
+                <div
+                    class="profile-page"
+                    data-profile-page-id="3">
+
+                    <h3>Contact</h3>
+
+                    <p>
+                        Let's work together on your next
+                        Shopify project.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP NAVIGATION -->
+
+        <nav class="topnav">
+
+            <div class="links">
+
+                <a
+                    href="#HOME"
+                    class="page-link"
+                    data-page-target="1">
+
+                    HOME
+
+                </a>
+
+
+                <a
+                    href="#CONTACTS"
+                    class="page-link"
+                    data-page-target="2">
+
+                    CONTACTS
+
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <!-- MAIN PAGE CONTENT -->
+
+        <div class="content">
+
+            <div
+                class="t-page-slide"
+                data-page="1">
+
+
+                <!-- HOME -->
+
+                <section
+                    class="t-page"
+                    data-page-id="1"
+                    id="HOME">
+
+                    <h1>Hi, I'm Ali</h1>
+
+                    <h2>Shopify Developer</h2>
+
+                    <p>
+                        I build custom Shopify storefronts using
+                        Liquid, HTML, CSS, and JavaScript.
+                    </p>
+
+                </section>
+
+
+                <!-- CONTACTS -->
+
+                <section
+                    class="t-page"
+                    data-page-id="2"
+                    id="CONTACTS">
+
+                    <h1>Let's Work Together</h1>
+
+                    <p>
+                        I'm available for Shopify development projects.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* ========================================
+       MAIN PAGE NAVIGATION
+    ======================================== */
+
+    const pageSlider =
+        document.querySelector('.t-page-slide');
+
+    const pageLinks =
+        document.querySelectorAll('.page-link');
+
+
+    pageLinks.forEach(link => {
+
+        link.addEventListener('click', function(event) {
+
+            event.preventDefault();
+
+            const targetPage =
+                this.dataset.pageTarget;
+
+            const targetHash =
+                this.getAttribute('href');
+
+
+            pageSlider.dataset.page =
+                targetPage;
+
+
+            history.pushState(
+                null,
+                '',
+                targetHash
+            );
+
+        });
+
+    });
+
+
+    /* ========================================
+       PROFILE TAB NAVIGATION
+    ======================================== */
+
+    const profileSlider =
+        document.querySelector('.profile-page-slide');
+
+    const profileTabs =
+        document.querySelectorAll('.t-tab');
+
+    const profilePill =
+        document.querySelector('.t-tabs-pill');
+
+
+    /* Move glass pill */
+
+    function moveProfilePill(tab) {
+
+        if (!tab) return;
+
+        profilePill.style.width =
+            `${tab.offsetWidth}px`;
+
+        profilePill.style.transform =
+            `translateX(${tab.offsetLeft}px)`;
+
+    }
+
+
+    /* Change profile content */
+
+    function changeProfilePage(page) {
+
+        profileSlider.dataset.profilePage =
+            page;
+
+
+        profileTabs.forEach(tab => {
+
+            const active =
+                tab.dataset.profilePage === String(page);
+
+
+            tab.setAttribute(
+                'aria-selected',
+                active
+            );
+
+
+            if (active) {
+                moveProfilePill(tab);
+            }
+
+        });
+
+    }
+
+
+    /* Tab click */
+
+    profileTabs.forEach(tab => {
+
+        tab.addEventListener('click', () => {
+
+            changeProfilePage(
+                tab.dataset.profilePage
+            );
+
+        });
+
+    });
+
+
+    /* Initial pill position */
+
+    function initializeProfilePill() {
+
+        const activeTab =
+            document.querySelector(
+                '.t-tab[aria-selected="true"]'
+            );
+
+        moveProfilePill(activeTab);
+
+    }
+
+
+    window.addEventListener(
+        'load',
+        initializeProfilePill
+    );
+
+
+    /* Keep pill aligned on resize */
+
+    window.addEventListener(
+        'resize',
+        initializeProfilePill
+    );
+
+</script>
+
+</body>
+</html>
