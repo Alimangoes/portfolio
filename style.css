@@ -344,6 +344,118 @@ PROFILE CONTENT
 }
 
 /* ========================================
+MARQUEE
+======================================== */
+
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  gap: 50px;
+  
+  mask-image: linear-gradient(
+  to right,
+  transparent 0%,
+  black 8%,
+  black 92%,
+  transparent 100%
+  );
+  
+  -webkit-mask-image: linear-gradient(
+  to right,
+  transparent 0%,
+  black 8%,
+  black 92%,
+  transparent 100%
+  );
+}
+  
+.marquee + .marquee {
+  margin-top: 12px;
+}
+
+.marquee-heading {
+  text-align: center;
+}
+  
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee:nth-child(2) .marquee-track {
+  animation-name: marquee-scroll-reverse;
+}
+  
+.marquee-content {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 25px;
+  padding-right: 25px;
+}
+  
+.marquee-content span {
+  flex-shrink: 0;
+  font-size: var(--h5);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+  /* ========================================
+   MARQUEE SVG ICONS
+  ======================================== */
+
+.tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tool-icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+  
+@keyframes marquee-scroll {
+from {
+  transform: translateX(0);
+}
+
+to {
+  transform: translateX(-50%);
+}
+}
+
+@keyframes marquee-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+  }
+  
+  /* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+.marquee-track {
+  animation: none !important;
+  transform: translateX(0);
+  }
+}
+  
+
+/* ========================================
 MAIN CONTENT
 ======================================== */
 
@@ -793,6 +905,24 @@ REDUCED MOTION
       font-size: 15px;
       line-height: 1.6;
     }
+
+    /* marquee Tablet / Mobile */
+    .marquee {
+    margin-top: 0;
+    }
+    
+    .marquee + .marquee {
+    margin-top: 10px;
+    }
+    
+    .marquee-content {
+    gap: 20px;
+    padding-right: 20px;
+    }
+    
+    .marquee-content span {
+    font-size: var(--h6);
+    }
   }
   
   
@@ -815,8 +945,10 @@ REDUCED MOTION
     .profile {
       width: calc(100% - 20px);
       margin-top: 10px;
-      padding: 15px;
+      padding: 10px;
       border-radius: 16px;
+      column-gap: 0;
+      row-gap: 10px;
     }
   
     /* LOGO */
@@ -886,13 +1018,12 @@ REDUCED MOTION
     }
   
     .profile-page h3 {
-      font-size: 17px;
+      font-size: var(--h6);
       margin-bottom: 8px;
     }
   
     .profile-page p {
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: var(--h6);
     }
   
     /* ========================================
@@ -941,5 +1072,23 @@ REDUCED MOTION
     .t-page p {
       font-size: 14px;
       line-height: 1.6;
+    }
+
+    /* Maruee Small mobile */
+    .marquee {
+      margin-top: 0;
+    }
+      
+    .marquee + .marquee {
+      margin-top: 8px;
+    }
+      
+    .marquee-content {
+      gap: 16px;
+      padding-right: 16px;
+    }
+      
+    .marquee-content span {
+      font-size: var(--h6);
     }
   }
