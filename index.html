@@ -244,38 +244,94 @@
     ======================================== */
 
     const pageSlider =
-        document.querySelector('.t-page-slide');
+    document.querySelector('.t-page-slide');
 
-    const pageLinks =
-        document.querySelectorAll('.page-link');
+const pageLinks =
+    document.querySelectorAll('.page-link');
 
+
+function changeMainPage(page) {
+
+    pageSlider.dataset.page = page;
 
     pageLinks.forEach(link => {
 
-        link.addEventListener('click', function(event) {
+        const active =
+            link.dataset.pageTarget === String(page);
 
-            event.preventDefault();
-
-            const targetPage =
-                this.dataset.pageTarget;
-
-            const targetHash =
-                this.getAttribute('href');
-
-
-            pageSlider.dataset.page =
-                targetPage;
-
-
-            history.pushState(
-                null,
-                '',
-                targetHash
-            );
-
-        });
+        link.classList.toggle(
+            'active',
+            active
+        );
 
     });
+
+}
+
+
+pageLinks.forEach(link => {
+
+    link.addEventListener('click', function(event) {
+
+        event.preventDefault();
+
+        const targetPage =
+            this.dataset.pageTarget;
+
+        const targetHash =
+            this.getAttribute('href');
+
+        changeMainPage(targetPage);
+
+        history.pushState(
+            null,
+            '',
+            targetHash
+        );
+
+    });
+
+});
+
+
+/* Initial active navigation */
+
+function initializeMainPage() {
+
+    const currentHash =
+        window.location.hash;
+
+    const activeLink =
+        document.querySelector(
+            `.page-link[href="${currentHash}"]`
+        );
+
+    if (activeLink) {
+
+        changeMainPage(
+            activeLink.dataset.pageTarget
+        );
+
+    } else {
+
+        changeMainPage('1');
+
+    }
+
+}
+
+
+/* Browser back / forward */
+
+window.addEventListener(
+    'popstate',
+    initializeMainPage
+);
+
+window.addEventListener(
+    'load',
+    initializeMainPage
+);
 
 
     /* ========================================

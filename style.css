@@ -355,11 +355,35 @@ TOP NAVIGATION
 
 .topnav .links a {
   display: flex;
+  align-items: center;
   text-decoration: none;
   font-weight: 500;
+
+  /* Active underline */
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+
+  /* Smooth movement */
+  transform: translateY(0);
+
+  transition:
+    transform var(--transition-speed) var(--transition-ease),
+    border-color var(--transition-speed) var(--transition-ease),
+    color var(--transition-speed) var(--transition-ease);
 }
 
-.topnav .links h5 {
+/* Hover */
+.topnav .links a:hover {
+  transform: translateY(-2px);
+}
+
+/* Active */
+.topnav .links a.active {
+  transform: translateY(-2px);
+  border-bottom-color: var(--color-text);
+}
+
+.topnav .links h4 {
   font-size: var(--h4);
 }
 
@@ -520,46 +544,131 @@ REDUCED MOTION
        PROFILE
        ======================================== */
   
-    .profile {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: none;
-  
-      width: calc(100% - 30px);
-      height: auto;
-      min-height: auto;
-  
-      margin: 15px auto 0;
-      padding: 20px;
-  
-      border-radius: 20px;
-  
-      overflow: visible;
-    }
-  
-    /* LOGO */
-  
-    .logoname {
-      padding: 10px 0 20px;
-    }
-  
-    .logoname .logo {
-      width: 75px;
-      padding: 5px;
-    }
-  
-    /* PROFILE IMAGE */
-  
-    .profilepic {
-      margin-top: 0;
-    }
-  
-    .profilepic img {
-      width: 180px;
-      height: 180px;
-      border-radius: 18px;
-    }
+       .profile {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+    
+        width: calc(100% - 30px);
+        height: auto;
+        min-height: auto;
+    
+        margin: 15px auto 0;
+        padding: 20px;
+    
+        display: grid;
+    
+        grid-template-columns: 180px minmax(0, 1fr);
+    
+        grid-template-areas:
+          "logo tabs"
+          "photo content";
+    
+        column-gap: 25px;
+        row-gap: 15px;
+    
+        align-items: start;
+    
+        border-radius: 20px;
+        overflow: hidden;
+      }
+    
+    
+      /* ========================================
+         LOGO - LEFT
+         ======================================== */
+    
+      .logoname {
+        grid-area: logo;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        padding: 0;
+      }
+    
+      .logoname .logo {
+        width: 75px;
+        height: auto;
+        padding: 5px;
+      }
+    
+    
+      /* ========================================
+         PROFILE IMAGE - LEFT
+         ======================================== */
+    
+      .profilepic {
+        grid-area: photo;
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    
+        margin-top: 0;
+      }
+    
+      .profilepic img {
+        width: 180px;
+        height: 180px;
+    
+        object-fit: cover;
+    
+        border-radius: 18px;
+      }
+    
+    
+      /* ========================================
+         TABS - TOP OF PROFILE CONTENT
+         ======================================== */
+    
+      .t-tabs {
+        grid-area: tabs;
+    
+        justify-self: start;
+        align-self: end;
+    
+        margin-top: 0;
+      }
+    
+      .t-tab {
+        height: 32px;
+        padding: 5px 14px;
+      }
+    
+    
+      /* ========================================
+         PROFILE CONTENT - RIGHT
+         ======================================== */
+    
+      .profile-content {
+        grid-area: content;
+    
+        position: relative;
+    
+        width: 100%;
+        height: 180px;
+    
+        min-width: 0;
+    
+        margin-top: 0;
+    
+        overflow: hidden;
+      }
+    
+      .profile-page-slide {
+        position: relative;
+    
+        width: 100%;
+        height: 100%;
+      }
+    
+      .profile-page {
+        width: 100%;
+        height: 100%;
+      }
   
     /* TABS */
   
@@ -605,7 +714,7 @@ REDUCED MOTION
       min-height: calc(100vh - 400px);
   
       margin-left: 0;
-      padding: 40px 20px 40px;
+      padding: 40px 20px;
   
       overflow: visible;
     }
@@ -715,18 +824,44 @@ REDUCED MOTION
     .t-tabs {
       width: 100%;
       max-width: 280px;
-      justify-content: space-between;
+  
+      display: inline-flex;
+      align-items: center;
+      justify-content: stretch;
+  
+      gap: 3px;
       margin-top: 18px;
+      padding: 4px;
+  
+      box-sizing: border-box;
     }
   
     .t-tab {
-      flex: 1;
+      flex: 1 1 0;
+      min-width: 0;
       height: 32px;
       padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   
     .t-tab h5 {
-      font-size: 12px;
+      margin: 0;
+      font-size: var(--h6);
+      line-height: 1;
+      white-space: nowrap;
+    }
+  
+    /* Responsive sliding pill */
+    .t-tabs-pill {
+      top: 4px;
+      left: 0;
+      height: 32px;
+  
+      /* JS controls width and position */
+      width: 0;
+      box-sizing: border-box;
     }
   
     /* PROFILE CONTENT */
