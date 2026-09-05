@@ -48,13 +48,13 @@
 
 
             <button
-                class="t-tab"
+                class="t-tab active"
                 role="tab"
                 aria-selected="true"
                 type="button"
                 data-profile-page="1">
 
-                About
+                <h5>About</h5>
 
             </button>
 
@@ -66,7 +66,7 @@
                 type="button"
                 data-profile-page="2">
 
-                Skills
+                <h5>Skills</h5>
 
             </button>
 
@@ -78,7 +78,7 @@
                 type="button"
                 data-profile-page="3">
 
-                Contact
+                <h5>Contact</h5>
 
             </button>
 
@@ -166,7 +166,7 @@
                     class="page-link"
                     data-page-target="1">
 
-                    HOME
+                    <h4>HOME</h4>
 
                 </a>
 
@@ -176,7 +176,7 @@
                     class="page-link"
                     data-page-target="2">
 
-                    CONTACTS
+                    <h4>CONTACTS</h4>
 
                 </a>
 
@@ -283,58 +283,59 @@
     ======================================== */
 
     const profileSlider =
-        document.querySelector('.profile-page-slide');
+    document.querySelector('.profile-page-slide');
 
-    const profileTabs =
-        document.querySelectorAll('.t-tab');
+const profileTabs =
+    document.querySelectorAll('.t-tab');
 
-    const profilePill =
-        document.querySelector('.t-tabs-pill');
-
-
-    /* Move glass pill */
-
-    function moveProfilePill(tab) {
-
-        if (!tab) return;
-
-        profilePill.style.width =
-            `${tab.offsetWidth}px`;
-
-        profilePill.style.transform =
-            `translateX(${tab.offsetLeft}px)`;
-
-    }
+const profilePill =
+    document.querySelector('.t-tabs-pill');
 
 
-    /* Change profile content */
+/* Move active pill */
 
-    function changeProfilePage(page) {
+function moveProfilePill(tab) {
 
-        profileSlider.dataset.profilePage =
-            page;
+    if (!tab || !profilePill) return;
 
+    profilePill.style.width =
+        `${tab.offsetWidth}px`;
 
-        profileTabs.forEach(tab => {
+    profilePill.style.transform =
+        `translateX(${tab.offsetLeft}px)`;
 
-            const active =
-                tab.dataset.profilePage === String(page);
-
-
-            tab.setAttribute(
-                'aria-selected',
-                active
-            );
+}
 
 
-            if (active) {
-                moveProfilePill(tab);
-            }
+/* Change profile content */
 
-        });
+function changeProfilePage(page) {
 
-    }
+    profileSlider.dataset.profilePage =
+        page;
 
+    profileTabs.forEach(tab => {
+
+        const active =
+            tab.dataset.profilePage === String(page);
+
+        tab.setAttribute(
+            'aria-selected',
+            active
+        );
+
+        tab.classList.toggle(
+            'active',
+            active
+        );
+
+        if (active) {
+            moveProfilePill(tab);
+        }
+
+    });
+
+}
 
     /* Tab click */
 
