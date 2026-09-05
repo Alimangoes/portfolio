@@ -140,7 +140,6 @@ LOGO
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px;
 }
 
 .logoname .logo {
@@ -283,13 +282,36 @@ PROFILE CONTENT
   pointer-events: none;
   transform: translateX(var(--slide-distance));
   filter: blur(var(--blur-amount));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(243, 233, 220, 0.4) transparent;
   transition:
-  opacity var(--transition-speed)
-    var(--transition-ease),
-  transform var(--transition-speed)
-    var(--transition-ease),
-  filter var(--transition-speed)
-    var(--transition-ease);
+    opacity var(--transition-speed) var(--transition-ease),
+    transform var(--transition-speed) var(--transition-ease),
+    filter var(--transition-speed) var(--transition-ease);
+}
+
+/* ========================================
+   PROFILE PAGE PILL SCROLLBAR
+======================================== */
+
+.profile-page::-webkit-scrollbar {
+  width: 3px;
+}
+
+.profile-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.profile-page::-webkit-scrollbar-thumb {
+  background: rgba(243, 233, 220, 0.4);
+  border-radius: 999px;
+}
+
+.profile-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(243, 233, 220, 0.6);
 }
 
 /* Active profile page */
@@ -456,10 +478,6 @@ REDUCED MOTION
       width: 320px;
       height: 90vh;
       padding: 16px;
-    }
-  
-    .logoname {
-      padding: 20px;
     }
   
     .logoname .logo {
@@ -802,10 +820,6 @@ REDUCED MOTION
     }
   
     /* LOGO */
-  
-    .logoname {
-      padding: 5px 0 15px;
-    }
   
     .logoname .logo {
       width: 65px;
