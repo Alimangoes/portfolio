@@ -332,13 +332,13 @@ PROFILE CONTENT
 /* Profile typography */
 
 .profile-page h3 {
-  font-size: var(--H3);
+  font-size: var(--h2);
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 .profile-page p {
-  font-size: var(--P);
+  font-size: var(--h3);
   line-height: 1.6;
   color: var(--color-text-muted);
 }
@@ -517,8 +517,8 @@ TOP NAVIGATION
   border-bottom-color: var(--color-text);
 }
 
-.topnav .links h4 {
-  font-size: var(--h4);
+.topnav .links h3 {
+  font-size: var(--h3);
 }
 
 /* ========================================
@@ -670,136 +670,103 @@ REDUCED MOTION
       min-height: 100vh;
     }
   
+  /* ========================================
+      PROFILE
+      ======================================== */
+
+      .profile {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+  
+      width: calc(100% - 30px);
+      height: auto;
+      min-height: auto;
+  
+      margin: 15px auto 0;
+      padding: 20px;
+  
+      display: grid;
+  
+      grid-template-columns: 180px minmax(0, 1fr);
+  
+      grid-template-areas:
+        "logo tabs"
+        "photo content";
+  
+      column-gap: 25px;
+      row-gap: 15px;
+  
+      align-items: start;
+  
+      border-radius: 20px;
+      overflow: hidden;
+    }
+  
     /* ========================================
-       PROFILE
-       ======================================== */
+        LOGO - LEFT
+        ======================================== */
   
-       .profile {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-    
-        width: calc(100% - 30px);
-        height: auto;
-        min-height: auto;
-    
-        margin: 15px auto 0;
-        padding: 20px;
-    
-        display: grid;
-    
-        grid-template-columns: 180px minmax(0, 1fr);
-    
-        grid-template-areas:
-          "logo tabs"
-          "photo content";
-    
-        column-gap: 25px;
-        row-gap: 15px;
-    
-        align-items: start;
-    
-        border-radius: 20px;
-        overflow: hidden;
-      }
-    
-    
-      /* ========================================
-         LOGO - LEFT
-         ======================================== */
-    
-      .logoname {
-        grid-area: logo;
-    
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        padding: 0;
-      }
-    
-      .logoname .logo {
-        width: 75px;
-        height: auto;
-        padding: 5px;
-      }
-    
-    
-      /* ========================================
-         PROFILE IMAGE - LEFT
-         ======================================== */
-    
-      .profilepic {
-        grid-area: photo;
-    
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-    
-        margin-top: 0;
-      }
-    
-      .profilepic img {
-        width: 180px;
-        height: 180px;
-    
-        object-fit: cover;
-    
-        border-radius: 18px;
-      }
-    
-    
-      /* ========================================
-         TABS - TOP OF PROFILE CONTENT
-         ======================================== */
-    
-      .t-tabs {
-        grid-area: tabs;
-    
-        justify-self: start;
-        align-self: end;
-    
-        margin-top: 0;
-      }
-    
-      .t-tab {
-        height: 32px;
-        padding: 5px 14px;
-      }
-    
-    
-      /* ========================================
-         PROFILE CONTENT - RIGHT
-         ======================================== */
-    
-      .profile-content {
-        grid-area: content;
-    
-        position: relative;
-    
-        width: 100%;
-        height: 180px;
-    
-        min-width: 0;
-    
-        margin-top: 0;
-    
-        overflow: hidden;
-      }
-    
-      .profile-page-slide {
-        position: relative;
-    
-        width: 100%;
-        height: 100%;
-      }
-    
-      .profile-page {
-        width: 100%;
-        height: 100%;
-      }
+    .logoname {
+      grid-area: logo;
   
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      padding: 0;
+    }
+  
+    .logoname .logo {
+      width: 75px;
+      height: auto;
+      padding: 5px;
+    }
+  
+  
+    /* ========================================
+        PROFILE IMAGE - LEFT
+        ======================================== */
+  
+    .profilepic {
+      grid-area: photo;
+  
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+  
+      margin-top: 0;
+    }
+  
+    .profilepic img {
+      width: 180px;
+      height: 180px;
+  
+      object-fit: cover;
+  
+      border-radius: 18px;
+    }
+  
+  
+    /* ========================================
+        TABS - TOP OF PROFILE CONTENT
+        ======================================== */
+  
+    .t-tabs {
+      grid-area: tabs;
+  
+      justify-self: start;
+      align-self: end;
+  
+      margin-top: 0;
+    }
+  
+    .t-tab {
+      height: 32px;
+      padding: 5px 14px;
+    }
+
     /* TABS */
   
     .t-tabs {
@@ -811,7 +778,37 @@ REDUCED MOTION
       padding: 5px 14px;
     }
   
-    /* PROFILE CONTENT */
+  
+    /* ========================================
+        PROFILE CONTENT - RIGHT
+        ======================================== */
+  
+    .profile-content {
+      grid-area: content;
+  
+      position: relative;
+  
+      width: 100%;
+      height: 180px;
+  
+      min-width: 0;
+  
+      margin-top: 0;
+  
+      overflow: hidden;
+    }
+  
+    .profile-page-slide {
+      position: relative;
+  
+      width: 100%;
+      height: 100%;
+    }
+  
+    .profile-page {
+      width: 100%;
+      height: 100%;
+    }
   
     .profile-content {
       width: 100%;
@@ -827,6 +824,16 @@ REDUCED MOTION
   
     .profile-page {
       height: 100%;
+    }
+    
+    .profile-page h3 {
+      font-size: var(--h3);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .profile-page p {
+      font-size: var(--h4);
     }
   
     /* ========================================
@@ -875,6 +882,10 @@ REDUCED MOTION
     .topnav .links {
       justify-content: center;
       gap: 25px;
+    }
+
+    .topnav .links h3 {
+      font-size: var(--h4);
     }
   
     /* ========================================
@@ -1006,6 +1017,7 @@ REDUCED MOTION
       height: 32px;
   
       /* JS controls width and position */
+
       width: 0;
       box-sizing: border-box;
     }
@@ -1018,7 +1030,7 @@ REDUCED MOTION
     }
   
     .profile-page h3 {
-      font-size: var(--h6);
+      font-size: var(--h5);
       margin-bottom: 8px;
     }
   
@@ -1040,8 +1052,8 @@ REDUCED MOTION
       gap: 20px;
     }
   
-    .topnav .links h4 {
-      font-size: 14px;
+    .topnav .links h3 {
+      font-size: var(--h5);
     }
   
     /* ========================================
@@ -1049,7 +1061,7 @@ REDUCED MOTION
        ======================================== */
   
     .content {
-      padding: 30px 15px 30px;
+      padding: 15px;
     }
   
     .t-page-slide {
