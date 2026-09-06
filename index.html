@@ -125,43 +125,43 @@
                     
                             <div class="marquee-content">
                     
-                                <span class="tool-icon" title="GitHub">
+                                <span class="tool-icon" title="GitHub" tabindex="0" role="button">
                                     <img src="images/github.svg" alt="GitHub">
                                 </span>
                     
-                                <span class="tool-icon" title="Git">
+                                <span class="tool-icon" title="Git" tabindex="0" role="button">
                                     <img src="images/git.svg" alt="Git">
                                 </span>
                     
-                                <span class="tool-icon" title="Monday">
+                                <span class="tool-icon" title="Monday" tabindex="0" role="button">
                                     <img src="images/monday.svg" alt="Monday">
                                 </span>
                     
-                                <span class="tool-icon" title="Slack">
+                                <span class="tool-icon" title="Slack" tabindex="0" role="button">
                                     <img src="images/slack.svg" alt="Slack">
                                 </span>
                     
-                                <span class="tool-icon" title="Figma">
+                                <span class="tool-icon" title="Figma" tabindex="0" role="button">
                                     <img src="images/figma.svg" alt="Figma">
                                 </span>
                     
-                                <span class="tool-icon" title="Canva">
+                                <span class="tool-icon" title="Canva" tabindex="0" role="button">
                                     <img src="images/canva.svg" alt="Canva">
                                 </span>
                     
-                                <span class="tool-icon" title="VS Code">
+                                <span class="tool-icon" title="VS Code" tabindex="0" role="button">
                                     <img src="images/vscode.svg" alt="VS Code">
                                 </span>
                     
-                                <span class="tool-icon" title="Discord">
+                                <span class="tool-icon" title="Discord" tabindex="0" role="button">
                                     <img src="images/discord.svg" alt="Discord">
                                 </span>
                     
-                                <span class="tool-icon" title="Microsoft Teams">
+                                <span class="tool-icon" title="Microsoft Teams" tabindex="0" role="button">
                                     <img src="images/teams.svg" alt="Microsoft Teams">
                                 </span>
                     
-                                <span class="tool-icon" title="Gmail">
+                                <span class="tool-icon" title="Gmail" tabindex="0" role="button">
                                     <img src="images/gmail.svg" alt="Gmail">
                                 </span>
                     
@@ -224,39 +224,39 @@
                     
                             <div class="marquee-content">
                     
-                                <span class="tool-icon" title="HTML">
+                                <span class="tool-icon" title="HTML" tabindex="0" role="button">
                                     <img src="images/html.svg" alt="HTML">
                                 </span>
                     
-                                <span class="tool-icon" title="CSS">
+                                <span class="tool-icon" title="CSS" tabindex="0" role="button">
                                     <img src="images/css.svg" alt="CSS">
                                 </span>
                     
-                                <span class="tool-icon" title="React">
+                                <span class="tool-icon" title="React" tabindex="0" role="button">
                                     <img src="images/react.svg" alt="React">
                                 </span>
                     
-                                <span class="tool-icon" title="JavaScript">
+                                <span class="tool-icon" title="JavaScript" tabindex="0" role="button">
                                     <img src="images/js.svg" alt="JavaScript">
                                 </span>
                     
-                                <span class="tool-icon" title="Jquery">
+                                <span class="tool-icon" title="Jquery" tabindex="0" role="button">
                                     <img src="images/jquery.svg" alt="Jquery">
                                 </span>
                     
-                                <span class="tool-icon" title="Graphql">
+                                <span class="tool-icon" title="Graphql" tabindex="0" role="button">
                                     <img src="images/graphql.svg" alt="Graphql">
                                 </span>
                     
-                                <span class="tool-icon" title="Shopify">
+                                <span class="tool-icon" title="Shopify" tabindex="0" role="button">
                                     <img src="images/shopify.svg" alt="Shopify">
                                 </span>
                     
-                                <span class="tool-icon" title="Bootstrap">
+                                <span class="tool-icon" title="Bootstrap" tabindex="0" role="button">
                                     <img src="images/bootstrap.svg" alt="Bootstrap">
                                 </span>
                     
-                                <span class="tool-icon" title="Liquid">
+                                <span class="tool-icon" title="Liquid" tabindex="0" role="button">
                                     <img src="images/liquid.png" alt="Liquid">
                                 </span>
                     
@@ -327,6 +327,54 @@
                 
             </div>
                 
+        </div>
+
+
+        <!-- ========================================
+             TOOL MASTERY MODAL
+        ========================================= -->
+
+        <div class="t-modal-overlay" aria-hidden="true">
+
+            <div
+                class="t-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modalTitle">
+
+                <button
+                    class="t-modal-close"
+                    type="button"
+                    aria-label="Close">
+                    &times;
+                </button>
+
+                <div class="t-modal-icon">
+                    <img id="modalIcon" src="" alt="">
+                </div>
+
+                <h4 id="modalTitle"></h4>
+
+                <div class="t-modal-level">
+
+                    <span
+                        id="modalLevelLabel"
+                        class="t-modal-level-label">
+                    </span>
+
+                    <div class="t-modal-level-bar">
+                        <span
+                            id="modalLevelFill"
+                            class="t-modal-level-fill">
+                        </span>
+                    </div>
+
+                </div>
+
+                <p id="modalBlurb" class="t-modal-blurb"></p>
+
+            </div>
+
         </div>
 
     </aside>
