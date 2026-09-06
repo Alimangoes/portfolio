@@ -3,7 +3,7 @@
     ======================================== */
 
     const pageSlider =
-    document.querySelector('.t-page-slide');
+    document.querySelector('.a-page-slide');
 
 const pageLinks =
     document.querySelectorAll('.page-link');
@@ -101,10 +101,10 @@ window.addEventListener(
     document.querySelector('.profile-page-slide');
 
 const profileTabs =
-    document.querySelectorAll('.t-tab');
+    document.querySelectorAll('.a-tab');
 
 const profilePill =
-    document.querySelector('.t-tabs-pill');
+    document.querySelector('.a-tabs-pill');
 
 
 /* Move active pill */
@@ -173,7 +173,7 @@ function changeProfilePage(page) {
 
         const activeTab =
             document.querySelector(
-                '.t-tab[aria-selected="true"]'
+                '.a-tab[aria-selected="true"]'
             );
 
         moveProfilePill(activeTab);
@@ -306,10 +306,10 @@ function changeProfilePage(page) {
         document.querySelectorAll('.tool-icon');
 
     const modalOverlay =
-        document.querySelector('.t-modal-overlay');
+        document.querySelector('.a-modal-overlay');
 
     const modalCard =
-        document.querySelector('.t-modal');
+        document.querySelector('.a-modal');
 
     const modalIcon =
         document.getElementById('modalIcon');
@@ -327,7 +327,7 @@ function changeProfilePage(page) {
         document.getElementById('modalBlurb');
 
     const modalCloseBtn =
-        document.querySelector('.t-modal-close');
+        document.querySelector('.a-modal-close');
 
     let modalCloseTimeout = null;
 
