@@ -106,6 +106,9 @@ const profileTabs =
 const profilePill =
     document.querySelector('.a-tabs-pill');
 
+const profileContentEl =
+    document.querySelector('.profile-content');
+
 
 /* Move active pill */
 
@@ -122,12 +125,57 @@ function moveProfilePill(tab) {
 }
 
 
+/* Size .profile-content to whichever tab is CURRENTLY
+   active, so the card shrinks for shorter tabs (like Tools)
+   and grows for longer ones (like About) instead of always
+   reserving space for the tallest tab */
+
+function resizeProfileContent(page) {
+
+    const activePage =
+        document.querySelector(
+            `.profile-page[data-profile-page-id="${page}"]`
+        );
+
+    if (!activePage || !profileContentEl) return;
+
+    /* Measure the INNER wrapper, not .profile-page itself —
+       .profile-page is position:absolute; inset:0, so it's
+       always stretched to match .profile-content's current
+       height. Measuring it directly would just report that
+       existing height back (never smaller), which is why the
+       card previously failed to shrink for shorter tabs. The
+       inner wrapper has no imposed height, so its scrollHeight
+       always reflects the tab's true content size. */
+
+    const innerEl =
+        activePage.querySelector('.profile-page-inner') ||
+        activePage;
+
+    const naturalHeight =
+        innerEl.scrollHeight;
+
+    /* Safety cap so a future long tab can't push the
+       card taller than the viewport allows; each tab's
+       own overflow-y:auto still lets it scroll if capped */
+
+    const maxAllowed =
+        window.innerHeight * 0.5;
+
+    profileContentEl.style.height =
+        `${Math.min(naturalHeight, maxAllowed)}px`;
+
+}
+
+
 /* Change profile content */
 
 function changeProfilePage(page) {
 
     profileSlider.dataset.profilePage =
         page;
+
+    resizeProfileContent(page);
 
     profileTabs.forEach(tab => {
 
@@ -167,9 +215,11 @@ function changeProfilePage(page) {
     });
 
 
-    /* Initial pill position */
+    /* Initial layout: pill position + content height,
+       both driven by whichever tab is actually active
+       right now (not assumed to be the first one) */
 
-    function initializeProfilePill() {
+    function initializeProfileLayout() {
 
         const activeTab =
             document.querySelector(
@@ -178,20 +228,25 @@ function changeProfilePage(page) {
 
         moveProfilePill(activeTab);
 
+        const currentPage =
+            (activeTab && activeTab.dataset.profilePage) || '1';
+
+        resizeProfileContent(currentPage);
+
     }
 
 
     window.addEventListener(
         'load',
-        initializeProfilePill
+        initializeProfileLayout
     );
 
 
-    /* Keep pill aligned on resize */
+    /* Keep pill and content height aligned on resize */
 
     window.addEventListener(
         'resize',
-        initializeProfilePill
+        initializeProfileLayout
     );
 
 
@@ -205,18 +260,18 @@ function changeProfilePage(page) {
     const toolMastery = {
 
         'GitHub': {
-            level: 'Advanced',
-            percent: 85,
+            level: 'Expert',
+            percent: 95,
             blurb: 'Comfortable managing repos, branches, and pull request workflows.'
         },
         'Git': {
-            level: 'Advanced',
-            percent: 85,
+            level: 'Expert',
+            percent: 95,
             blurb: 'Daily use for version control across every project.'
         },
         'Monday': {
-            level: 'Intermediate',
-            percent: 60,
+            level: 'Advanced',
+            percent: 90,
             blurb: 'Used for tracking sprints and client project boards.'
         },
         'Slack': {
@@ -225,13 +280,13 @@ function changeProfilePage(page) {
             blurb: 'Primary tool for day-to-day team and client communication.'
         },
         'Figma': {
-            level: 'Intermediate',
-            percent: 65,
+            level: 'Advanced',
+            percent: 90,
             blurb: 'Comfortable inspecting designs and pulling specs for development.'
         },
         'Canva': {
-            level: 'Intermediate',
-            percent: 55,
+            level: 'Advanced',
+            percent: 90,
             blurb: 'Used for quick graphics and marketing assets.'
         },
         'VS Code': {
@@ -240,18 +295,18 @@ function changeProfilePage(page) {
             blurb: 'My daily code editor for all front-end and Shopify development.'
         },
         'Discord': {
-            level: 'Intermediate',
-            percent: 60,
+            level: 'Expert',
+            percent: 95,
             blurb: 'Used for community and async team communication.'
         },
         'Microsoft Teams': {
-            level: 'Intermediate',
-            percent: 60,
+            level: 'Advanced',
+            percent: 90,
             blurb: 'Used for client meetings and corporate collaboration.'
         },
         'Gmail': {
             level: 'Advanced',
-            percent: 80,
+            percent: 90,
             blurb: 'Primary channel for client and project communication.'
         },
         'HTML': {
@@ -265,23 +320,23 @@ function changeProfilePage(page) {
             blurb: 'Responsive layouts, animations, and design systems.'
         },
         'React': {
-            level: 'Intermediate',
-            percent: 60,
+            level: 'Advanced',
+            percent: 90,
             blurb: 'Building and customizing components for web apps.'
         },
         'JavaScript': {
             level: 'Advanced',
-            percent: 85,
+            percent: 90,
             blurb: 'Interactivity, DOM manipulation, and custom Shopify theme features.'
         },
         'Jquery': {
             level: 'Intermediate',
-            percent: 65,
+            percent: 70,
             blurb: 'Used in legacy Shopify themes for DOM manipulation and animation.'
         },
         'Graphql': {
             level: 'Intermediate',
-            percent: 55,
+            percent: 70,
             blurb: "Used with Shopify's Storefront and Admin APIs for data queries."
         },
         'Shopify': {
@@ -291,12 +346,12 @@ function changeProfilePage(page) {
         },
         'Bootstrap': {
             level: 'Intermediate',
-            percent: 60,
+            percent: 70,
             blurb: 'Used for rapid responsive layout prototyping.'
         },
         'Liquid': {
             level: 'Expert',
-            percent: 90,
+            percent: 95,
             blurb: "Shopify's templating language — my primary tool for theme customization."
         }
 

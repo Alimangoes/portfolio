@@ -94,7 +94,7 @@ PROFILE GLASS PANEL
   left: 30px;
   transform: translateY(-50%);
   width: 400px;
-  height: 90vh;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -262,9 +262,10 @@ PROFILE CONTENT
 .profile-content {
   position: relative;
   width: 100%;
-  flex: 1;
+  height: 0;
   margin-top: 25px;
   overflow: hidden;
+  transition: height var(--transition-speed) var(--transition-ease);
 }
 
 .profile-page-slide {
@@ -419,8 +420,8 @@ MARQUEE
 
 .tool-icon img {
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   transition: transform var(--transition-speed) var(--transition-ease);
 }
@@ -651,35 +652,6 @@ TOOL MASTERY MODAL
   color: var(--color-text-muted);
 }
 
-@media (max-width: 425px) {
-  .a-modal-overlay {
-    padding: 16px;
-    align-items: flex-start;
-  }
-
-  .a-modal {
-    max-width: 200px;
-    max-height: 260px;
-    padding: 18px 16px;
-    gap: 10px;
-    overflow-y: auto;
-  }
-
-  .a-modal-icon {
-    width: 48px;
-    height: 48px;
-    padding: 8px;
-  }
-
-  .a-modal h4 {
-    font-size: var(--h4);
-  }
-
-  .a-modal-blurb {
-    font-size: var(--h6);
-  }
-}
-
 /* ========================================
 MAIN CONTENT
 ======================================== */
@@ -816,7 +788,6 @@ REDUCED MOTION
     .profile {
       left: 20px;
       width: 320px;
-      height: 90vh;
       padding: 16px;
     }
   
@@ -1010,50 +981,35 @@ REDUCED MOTION
     /* ========================================
         PROFILE CONTENT - RIGHT
         ======================================== */
-  
+
     .profile-content {
       grid-area: content;
-  
+
       position: relative;
-  
+
       width: 100%;
-      height: 180px;
-  
+      height: 0;
+
       min-width: 0;
-  
+
       margin-top: 0;
-  
+
       overflow: hidden;
+      transition: height var(--transition-speed) var(--transition-ease);
     }
-  
+
     .profile-page-slide {
       position: relative;
-  
+
       width: 100%;
       height: 100%;
     }
-  
+
     .profile-page {
       width: 100%;
       height: 100%;
     }
-  
-    .profile-content {
-      width: 100%;
-      height: 150px;
-      flex: none;
-      margin-top: 20px;
-      overflow: hidden;
-    }
-  
-    .profile-page-slide {
-      height: 100%;
-    }
-  
-    .profile-page {
-      height: 100%;
-    }
-    
+
     .profile-page h3 {
       font-size: var(--h4);
       font-weight: 600;
@@ -1189,6 +1145,34 @@ REDUCED MOTION
       column-gap: 0;
       row-gap: 10px;
     }
+
+    .a-modal-overlay {
+      padding: 16px;
+      align-items: flex-start;
+      padding-top: 40px;
+    }
+
+    .a-modal {
+      max-width: 200px;
+      max-height: 260px;
+      padding: 18px 16px;
+      gap: 10px;
+      overflow-y: auto;
+    }
+
+    .a-modal-icon {
+      width: 48px;
+      height: 48px;
+      padding: 8px;
+    }
+
+    .a-modal h4 {
+      font-size: var(--h4);
+    }
+
+    .a-modal-blurb {
+      font-size: var(--h6);
+    }
   
     /* LOGO */
   
@@ -1253,7 +1237,6 @@ REDUCED MOTION
     /* PROFILE CONTENT */
   
     .profile-content {
-      height: 135px;
       margin-top: 18px;
     }
   
@@ -1330,5 +1313,11 @@ REDUCED MOTION
       
     .marquee-content span {
       font-size: var(--h6);
+    }
+
+    .tool-icon img {
+      display: block;
+      width: 40px;
+      height: 35px;
     }
   }
